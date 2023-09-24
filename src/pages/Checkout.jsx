@@ -22,6 +22,10 @@ const Checkout = () => {
     );
   };
 
+  const openUpay = () => {
+    window.open("http://172.20.10.3:8080/?name=Dfinity%20Designer&address=sid$qbu4y-iaaaa-aaaan-qdvda-cai.raw.icp0.io&currency=USD&amount=10.14&logo=https://cdn.discordapp.com/avatars/779555322087866409/e0e0512d35cbdd4633116e0fe987e2d4.webp?size=160&redirectUrl=http://localhost:3000/ordersuccess", "_blank", "noreferrer");
+  };
+
   const ShowCheckout = () => {
     let subtotal = 0;
     let shipping = 30.0;
@@ -65,6 +69,8 @@ const Checkout = () => {
                     appearance="primary"
                     enabled
                     color="FD4B1E"
+                    href=""
+                    onClick={() => openUpay()}
                   >
                     <img src={logo} alt="upayedme logo" style={{ width: '20px', height: '25px', margin: 7 }} />
                     UpayedMe
