@@ -22,9 +22,13 @@ const Checkout = () => {
     );
   };
 
-
   const openUpay = () => {
-    window.open("https://pay.upayed.me/?name=Astro%20Shop&address=astroshop$upayed.me&currency=USD&amount=0.01&logo=https://gu3af-4qaaa-aaaal-ac3ea-cai.icp0.io/assets/mr_astro.png?size=160&callbackUrl=https://gu3af-4qaaa-aaaal-ac3ea-cai.icp0.io/ordersuccess", "_blank", "noreferrer");
+    let total = localStorage.getItem("total");
+    window.open(
+      `https://pay.upayed.me/?name=Astro%20Shop&address=astroshop$upayed.me&currency=USD&amount=${total}&logo=https://gu3af-4qaaa-aaaal-ac3ea-cai.icp0.io/assets/mr_astro.png?size=160&callbackUrl=https://gu3af-4qaaa-aaaal-ac3ea-cai.icp0.io/ordersuccess`,
+      "_blank",
+      "noreferrer"
+    );
   };
 
   const ShowCheckout = () => {
@@ -60,10 +64,22 @@ const Checkout = () => {
                     </li>
                     <li className="list-group-item d-flex justify-content-between align-items-center border-0 px-0 mb-3">
                       <div>
-                        <strong>Total amount</strong>
+                        <strong>Total</strong>
                       </div>
                       <span>
                         <strong>${Math.round(subtotal + shipping)}</strong>
+                      </span>
+                    </li>
+                    <li className="list-group-item d-flex justify-content-between align-items-center px-0">
+                      Discount
+                      <span>{0.999 * 100}%</span>
+                    </li>
+                    <li className="list-group-item d-flex justify-content-between align-items-center border-0 px-0 mb-3">
+                      <div>
+                        <strong>To pay</strong>
+                      </div>
+                      <span>
+                        <strong>${localStorage.getItem("total")}</strong>
                       </span>
                     </li>
                   </ul>
@@ -75,7 +91,7 @@ const Checkout = () => {
                     href=""
                     onClick={() => openUpay()}
                   >
-                    <img src={logo} alt="upayedme logo" style={{ width: '16px', height: '20px', margin: 5 }} />
+                    <img src={logo} alt="upayedme logo" style={{ width: "16px", height: "20px", margin: 5 }} />
                     upayed.me
                   </button>
                 </div>
@@ -93,34 +109,16 @@ const Checkout = () => {
                         <label for="firstName" className="form-label">
                           First name
                         </label>
-                        <input
-                          type="text"
-                          className="form-control"
-                          id="firstName"
-                          placeholder=""
-                          value=""
-                          required
-                        />
-                        <div className="invalid-feedback">
-                          Valid first name is required.
-                        </div>
+                        <input type="text" className="form-control" id="firstName" placeholder="" value="" required />
+                        <div className="invalid-feedback">Valid first name is required.</div>
                       </div>
 
                       <div className="col-sm-6 my-1">
                         <label for="lastName" className="form-label">
                           Last name
                         </label>
-                        <input
-                          type="text"
-                          className="form-control"
-                          id="lastName"
-                          placeholder=""
-                          value=""
-                          required
-                        />
-                        <div className="invalid-feedback">
-                          Valid last name is required.
-                        </div>
+                        <input type="text" className="form-control" id="lastName" placeholder="" value="" required />
+                        <div className="invalid-feedback">Valid last name is required.</div>
                       </div>
 
                       <div className="col-12 my-1">
@@ -134,26 +132,15 @@ const Checkout = () => {
                           placeholder="you@example.com"
                           required
                         />
-                        <div className="invalid-feedback">
-                          Please enter a valid email address for shipping
-                          updates.
-                        </div>
+                        <div className="invalid-feedback">Please enter a valid email address for shipping updates.</div>
                       </div>
 
                       <div className="col-12 my-1">
                         <label for="address" className="form-label">
                           Address
                         </label>
-                        <input
-                          type="text"
-                          className="form-control"
-                          id="address"
-                          placeholder="1234 Main St"
-                          required
-                        />
-                        <div className="invalid-feedback">
-                          Please enter your shipping address.
-                        </div>
+                        <input type="text" className="form-control" id="address" placeholder="1234 Main St" required />
+                        <div className="invalid-feedback">Please enter your shipping address.</div>
                       </div>
 
                       {/* <div className="col-12">

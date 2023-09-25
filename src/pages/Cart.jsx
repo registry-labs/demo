@@ -34,6 +34,8 @@ const Cart = () => {
     let subtotal = 0;
     let shipping = 30.0;
     let totalItems = 0;
+    let discount = 0.999;
+
     state.map((item) => {
       return (subtotal += item.price * item.qty);
     });
@@ -41,6 +43,9 @@ const Cart = () => {
     state.map((item) => {
       return (totalItems += item.qty);
     });
+
+    let totalWithDiscount = ((subtotal + shipping) * (1 - discount)).toFixed(2);
+    localStorage.setItem("total", totalWithDiscount);
     return (
       <>
         <section className="h-100 gradient-custom">
@@ -57,10 +62,7 @@ const Cart = () => {
                         <div key={item.id}>
                           <div className="row d-flex align-items-center">
                             <div className="col-lg-3 col-md-12">
-                              <div
-                                className="bg-image rounded"
-                                data-mdb-ripple-color="light"
-                              >
+                              <div className="bg-image rounded" data-mdb-ripple-color="light">
                                 <img
                                   src={item.image}
                                   // className="w-100"
@@ -80,10 +82,7 @@ const Cart = () => {
                             </div>
 
                             <div className="col-lg-4 col-md-6">
-                              <div
-                                className="d-flex mb-4"
-                                style={{ maxWidth: "300px" }}
-                              >
+                              <div className="d-flex mb-4" style={{ maxWidth: "300px" }}>
                                 <button
                                   className="btn px-3"
                                   onClick={() => {
@@ -107,8 +106,7 @@ const Cart = () => {
 
                               <p className="text-start text-md-center">
                                 <strong>
-                                  <span className="text-muted">{item.qty}</span>{" "}
-                                  x ${item.price}
+                                  <span className="text-muted">{item.qty}</span> x ${item.price}
                                 </strong>
                               </p>
                             </div>
@@ -137,18 +135,27 @@ const Cart = () => {
                       </li>
                       <li className="list-group-item d-flex justify-content-between align-items-center border-0 px-0 mb-3">
                         <div>
-                          <strong>Total amount</strong>
+                          <strong>Total</strong>
                         </div>
                         <span>
                           <strong>${Math.round(subtotal + shipping)}</strong>
                         </span>
                       </li>
+                      <li className="list-group-item d-flex justify-content-between align-items-center px-0">
+                        Discount
+                        <span>{discount * 100}%</span>
+                      </li>
+                      <li className="list-group-item d-flex justify-content-between align-items-center border-0 px-0 mb-3">
+                        <div>
+                          <strong>To pay</strong>
+                        </div>
+                        <span>
+                          <strong>${totalWithDiscount}</strong>
+                        </span>
+                      </li>
                     </ul>
 
-                    <Link
-                      to="/checkout"
-                      className="btn btn-dark btn-lg btn-block"
-                    >
+                    <Link to="/checkout" className="btn btn-dark btn-lg btn-block">
                       Go to checkout
                     </Link>
                   </div>
