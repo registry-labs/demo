@@ -5,7 +5,6 @@ import { Link } from "react-router-dom";
 
 
 const OrderSuccessful = () => {
-    const { order } = useSelector((state) => state.order);
     return (
         <>
             <Navbar />
@@ -16,8 +15,7 @@ const OrderSuccessful = () => {
                             <div className="card-body">
                                 <h3 className="card-title">Order Successful</h3>
                                 <p className="card-text">
-                                    Your order has been placed successfully. Your order number is{" "}
-                                    <strong>{order._id}</strong>
+                                    Your order has been placed successfully.
                                 </p>
                                 <Link to="/orders/me" className="btn btn-primary">
                                     Go to Orders

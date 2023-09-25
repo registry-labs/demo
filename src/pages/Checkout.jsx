@@ -22,8 +22,9 @@ const Checkout = () => {
     );
   };
 
+
   const openUpay = () => {
-    window.open("https://gt2gr-riaaa-aaaal-ac3eq-cai.icp0.io/?name=Dfinity%20Designer&address=sid$qbu4y-iaaaa-aaaan-qdvda-cai.raw.icp0.io&currency=USD&amount=10.14&logo=https://cdn.discordapp.com/avatars/779555322087866409/e0e0512d35cbdd4633116e0fe987e2d4.webp?size=160&redirectUrl=https://gu3af-4qaaa-aaaal-ac3ea-cai.icp0.io/ordersuccess", "_blank", "noreferrer");
+    window.open("https://pay.upayed.me/?name=Astro%20Shop&address=astroshop$upayed.me&currency=USD&amount=0.01&logo=https://gu3af-4qaaa-aaaal-ac3ea-cai.icp0.io/assets/mr_astro.png?size=160&callbackUrl=https://gu3af-4qaaa-aaaal-ac3ea-cai.icp0.io/ordersuccess", "_blank", "noreferrer");
   };
 
   const ShowCheckout = () => {
@@ -74,8 +75,8 @@ const Checkout = () => {
                     href=""
                     onClick={() => openUpay()}
                   >
-                    <img src={logo} alt="upayedme logo" style={{ width: '20px', height: '25px', margin: 7 }} />
-                    UpayedMe
+                    <img src={logo} alt="upayedme logo" style={{ width: '16px', height: '20px', margin: 5 }} />
+                    upayed.me
                   </button>
                 </div>
               </div>
